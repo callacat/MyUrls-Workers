@@ -94,12 +94,12 @@ async function handleRequest(request) {
     Code: 1,
     Message: "URL stored successfully",
     ShortUrl: shortLink,
-    LongUrl: targetUrl，
-    ShortKey: suffix，
+    LongUrl: targetUrl,
+    ShortKey: suffix,
     ip: ip,
     city: city
   }), {
-    status: 200，
+    status: 200,
     headers: corsHeaders
   });
 }
