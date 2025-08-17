@@ -123,7 +123,10 @@ export async function onRequest(context) {
         }
 
         await kv.put(shortKey, longUrl);
-        const shortUrl = `https://${request.headers.get("host")}/${shortKey}`;
+        //EO回源特殊处理
+        const host = request.headers.get("EO-Client-Host") || request.headers.get("host");
+        const shortUrl = `https://${host}/${shortKey}`;
+        
         return new Response(JSON.stringify({
             Code: 1,
             Message: "URL stored successfully",
