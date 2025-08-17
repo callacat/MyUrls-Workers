@@ -111,16 +111,16 @@ async function handleRedirect(request) {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*', // 允许任意来源（你可以替换为指定的域名以限制来源）
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // 允许的方法
-    'Access-Control-Allow-Headers': 'Content-Type'， // 允许的自定义头部
+    'Access-Control-Allow-Headers': 'Content-Type', // 允许的自定义头部
     'Content-Type': 'application/json' // 默认的响应类型
 };
   // 检查是否设置了 LINKS 环境变量
   if (typeof LINKS === 'undefined' || !LINKS) {
     return new Response(JSON.stringify({
-      代码: 500,
+      Code: 500,
       Message: '请去Workers控制台-设置 将变量名称设定为“LINKS”并绑定KV命名空间然后重试部署！'
-    })， {
-      status: 200，
+    }),{
+      status: 200,
       headers: corsHeaders
     });
   }
