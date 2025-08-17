@@ -126,13 +126,18 @@ export async function onRequest(context) {
         //EO回源特殊处理
         const host = request.headers.get("EO-Client-Host") || request.headers.get("host");
         const shortUrl = `https://${host}/${shortKey}`;
+        // 优先取 EO-Client-，否则退回 Cloudflare
+        const ip = request。headers.get("EO-Client-IP") || request.headers.get("cf-connecting-ip");
+        const city = request.headers.get("EO-Client-City") || request.headers.get("cf-ipcity");
         
         return new Response(JSON.stringify({
             Code: 1,
             Message: "URL stored successfully",
             ShortUrl: shortUrl,
             LongUrl: longUrl,
-            ShortKey: shortKey
+            ShortKey: shortKey,
+            ip: ip,
+            city: city
         }), {
             status: 200,
             headers: corsHeaders
