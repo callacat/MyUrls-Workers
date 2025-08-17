@@ -68,7 +68,9 @@ async function handleRequest(request) {
   const suffix = customSuffix || generateRandomSuffix(6);  // 默认6位随机后缀
 
   // 获取当前 Worker 的域名
-  const workerDomain = request.headers.get('host');  // 获取当前访问的域名
+  const host = request.headers.get("EO-Client-Host") || request.headers.get("host");
+  const ip = request.headers.get("EO-Client-IP") || request.headers.get("cf-connecting-ip");
+  const city = request.headers.get("EO-Client-City") || request.cf.city;
 
   // 检查 KV 存储中是否已存在该自定义后缀
   const existingUrl = await LINKS.get(suffix);
@@ -83,16 +85,21 @@ async function handleRequest(request) {
   }
 
   // 构建短链接
-  const shortLink = `https://${workerDomain}/${suffix}`;
+  const shortLink = `https://${host}/${suffix}`;
 
   // 将短链接映射到目标URL，存储到 KV 存储
   await LINKS.put(suffix, targetUrl);
 
   return new Response(JSON.stringify({
     Code: 1,
-    ShortUrl: shortLink
+    Message: "URL stored successfully",
+    ShortUrl: shortLink,
+    LongUrl: targetUrl，
+    ShortKey: suffix，
+    ip: ip,
+    city: city
   }), {
-    status: 200,
+    status: 200，
     headers: corsHeaders
   });
 }
@@ -104,16 +111,16 @@ async function handleRedirect(request) {
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*', // 允许任意来源（你可以替换为指定的域名以限制来源）
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', // 允许的方法
-    'Access-Control-Allow-Headers': 'Content-Type', // 允许的自定义头部
+    'Access-Control-Allow-Headers': 'Content-Type'， // 允许的自定义头部
     'Content-Type': 'application/json' // 默认的响应类型
 };
   // 检查是否设置了 LINKS 环境变量
   if (typeof LINKS === 'undefined' || !LINKS) {
     return new Response(JSON.stringify({
-      Code: 500,
+      代码: 500,
       Message: '请去Workers控制台-设置 将变量名称设定为“LINKS”并绑定KV命名空间然后重试部署！'
-    }), {
-      status: 200,
+    })， {
+      status: 200，
       headers: corsHeaders
     });
   }
