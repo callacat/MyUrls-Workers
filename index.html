@@ -70,8 +70,23 @@
         }
       },
       mounted() {
-        this.$refs.long.focus()
-      },
+          this.$refs.long && this.$refs.long.focus();
+        
+          // 检查并处理 ?error=notfound
+          const url = new URL(window.location.href);
+          const error = url.searchParams.get("error");
+        
+          if (error === "notfound") {
+            this.$message.error("短链接已失效，请重新生成！");
+        
+            // 清理 URL 参数，避免刷新后重复提示
+            url.searchParams.delete("error");
+            // 如果还有其他参数，保留它们；否则退回到纯路径
+            const cleanUrl =
+              url.search ? `${url.pathname}${url.search}${url.hash}` : `${url.pathname}${url.hash}`;
+            history.replaceState(null, "", cleanUrl || "/");
+          }
+        },
       methods: {
         enterToDoShort(ev) {
           ev.keyCode === 13 && this.doShort()
