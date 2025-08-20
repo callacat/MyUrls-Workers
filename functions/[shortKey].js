@@ -14,6 +14,6 @@ export async function onRequest(context) {
     return Response.redirect(longUrl, 301);
   } else {
     // 如果找不到，返回 404
-    return new Response("Not Found", { status: 404 });
+    return new Response("该短链接已失效 请重新生成 生成后将永久生效", { status: 404 });
   }
 }
