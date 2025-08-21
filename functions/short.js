@@ -127,7 +127,7 @@ export async function onRequest(context) {
                 });
             }
         } else {
-            shortKey = generateRandomKey(6);
+            shortKey = generateRandomKey(7);
         }
 
         await kv.put(shortKey, longUrl);
