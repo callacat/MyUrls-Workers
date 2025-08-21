@@ -65,7 +65,7 @@ async function handleRequest(request) {
   }
 
   // 如果指定了自定义后缀，则使用它；否则生成一个随机后缀
-  const suffix = customSuffix || generateRandomSuffix(6);  // 默认6位随机后缀
+  const suffix = customSuffix || generateRandomSuffix(7);  // 默认7位随机后缀
 
   // 获取当前 Worker 的域名
   const host = request.headers.get("EO-Client-Host") || request.headers.get("host");
