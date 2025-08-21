@@ -16,6 +16,6 @@ export async function onRequest(context) {
     // 如果找不到，返回 404
     return new Response("该短链接已失效 请重新生成 生成后将永久生效", { status: 404 });
     // 未找到 → 回首页并带上标记
-    // return Response.redirect(`/?error=notfound`, 302);
+    // return Response.redirect(`/?error=404`, 302);
   }
 }
