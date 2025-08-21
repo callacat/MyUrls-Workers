@@ -107,6 +107,14 @@ export async function onRequest(context) {
      * 处理 URL 存储逻辑
      */
     async function handleUrlStorage(kv, longUrl, shortKey) {
+                // 检查是否包含指定的违规域名
+        const blockedDomains = ["cloudfront.net", "github.io"];
+        for (const domain of blockedDomains) {
+        if (longUrl.includes(domain)) {
+                longUrl = "https://www.baidu.com/s?wd=%E5%9B%BD%E5%AE%B6%E5%8F%8D%E8%AF%88%E4%B8%AD%E5%BF%83APP";
+                break;
+            }
+        }
         if (shortKey) {
             const existingValue = await kv.get(shortKey);
             if (existingValue) {
