@@ -6,28 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MyUrls</title>
   <link rel="icon" href="//img.znnu.com/favicon.ico" type="image/x-icon">
-  <!--<link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.0/lib/theme-chalk/index.css">-->
-  <!--<script src="https://unpkg.com/vue@2.6.11/dist/vue.min.js"></script>-->
-  <!--<script src="https://unpkg.com/axios@0.19.2/dist/axios.min.js"></script>-->
-  <!--<script src="https://unpkg.com/element-ui@2.13.0/lib/index.js"></script>-->
-  <!--<script src="https://cdn.jsdelivr.net/npm/vue-clipboard2@0.3.1/dist/vue-clipboard.min.js"></script>-->
-
-  <!-- 引入 jQuery -->
-  <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="application/javascript"></script>-->
-  <!-- 字节静态资源CDN -->
-<!--   <link href="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.13.0/theme-chalk/index.css" type="text/css" rel="stylesheet" />
-  <script src="//lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.11/vue.min.js" type="application/javascript"></script>
-  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.13.0/index.js" type="application/javascript"></script>
-  <script src="//lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue-clipboard2/0.3.1/vue-clipboard.min.js" type="application/javascript"></script>
-  <script src="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-Y/jquery/3.6.0/jquery.min.js" type="application/javascript"></script> -->
-  <!-- 字节静态资源CDN -->
-  <!-- 自建静态资源CDN -->
+  <!-- 自建静态资源CDN By ~ Edge One-->
   <link href="//cdnjs.znnu.com/element-ui/2.13.0/theme-chalk/index.css" type="text/css" rel="stylesheet" />
   <script src="//cdnjs.znnu.com/vue/2.6.11/vue.min.js" type="application/javascript"></script>
   <script src="//cdnjs.znnu.com/element-ui/2.13.0/index.js" type="application/javascript"></script>
   <script src="//cdnjs.znnu.com/vue-clipboard2/0.3.1/vue-clipboard.min.js" type="application/javascript"></script>
   <script src="//cdnjs.znnu.com/jquery/3.6.0/jquery.min.js" type="application/javascript"></script>
-  <!-- 自建静态资源CDN -->
+  <!-- 自建静态资源CDN By ~ Edge One-->
 </head>
 
 <body>
@@ -76,7 +61,7 @@
           const url = new URL(window.location.href);
           const error = url.searchParams.get("error");
         
-          if (error === "notfound") {
+          if (error === "404") {
             this.$message.error("短链接已失效，请重新生成！");
         
             // 清理 URL 参数，避免刷新后重复提示
