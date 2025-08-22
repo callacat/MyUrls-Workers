@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "2de5d25f27fbeb310b2de035eea6dec7.txt"
+  ]
+}
