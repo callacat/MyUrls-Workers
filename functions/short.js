@@ -132,7 +132,7 @@ export async function onRequest(context) {
 
         await kv.put(shortKey, longUrl);
         //EO回源特殊处理
-        const host = request.headers.get("EO-Client-Host") || request.headers.get("host");
+        const host = request.headers.get("CDN-Client-Host") || request.headers.get("EO-Client-Host") || request.headers.get("host");
         const shortUrl = `https://${host}/${shortKey}`;
         // 优先取 EO-Client-，否则退回 Cloudflare
         const ip = request.headers.get("EO-Client-IP") || request.headers.get("cf-connecting-ip");
