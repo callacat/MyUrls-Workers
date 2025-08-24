@@ -14,7 +14,10 @@ export async function onRequest(context) {
     return Response.redirect(longUrl, 301);
   } else {
     // 如果找不到，返回 404
-    return new Response("该短链接已失效 请重新生成 生成后将永久生效", { status: 404 });
+    return new Response("该短链接不存在或已失效\nThis short link does not exist or has expired", {
+      status: 404,
+      headers: { 'content-type': 'text/plain; charset=utf-8' }
+    });
     // 未找到 → 回首页并带上标记
     // return Response.redirect(`/?error=404`, 302);
   }
