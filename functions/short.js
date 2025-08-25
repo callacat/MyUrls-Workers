@@ -136,7 +136,7 @@ export async function onRequest(context) {
         const shortUrl = `https://${host}/${shortKey}`;
         // 优先取 EO-Client-，否则退回 Cloudflare
         const ip = request.headers.get("EO-Client-IP") || request.headers.get("cf-connecting-ip");
-        const city = request.headers.get("EO-Client-City") || request.headers.get("cf-ipcity");
+        const city = request.headers.get("EO-Client-City") || request.headers.get("cf-ipcity") || (request.cf && request.cf.city) || null;
         
         return new Response(JSON.stringify({
             Code: 1,
