@@ -1,0 +1,12 @@
+{
+  "name": "myurls-worker",
+  "main": "worker.js",
+  "compatibility_date": "2026-01-11",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
